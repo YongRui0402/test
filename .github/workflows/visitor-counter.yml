@@ -1,7 +1,7 @@
 name: Visitor Counter
 on:
   schedule:
-    - cron: "0/20 * * * *"  # 每小時執行一次（可調整）
+    - cron: "*/20 * * * *"  # 每小時執行一次（可調整）
   workflow_dispatch:  # 允許手動觸發
   repository_dispatch:
     types: [visit]
