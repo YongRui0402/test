@@ -6,9 +6,19 @@
     <title>訪客計數器</title>
 </head>
 <body>
-    <h1>歡迎來到我的 GitHub Pages</h1>
-    <p>訪問次數：<span id="visitor-count">載入中...</span></p>
-    
-    <script src="visitor_count.js"></script>
+    <h1>訪客計數：<span id="counter">讀取中...</span></h1>
+
+    <script>
+        async function fetchCounter() {
+            try {
+                let response = await fetch('counter.json');
+                let data = await response.json();
+                document.getElementById('counter').innerText = data.visits;
+            } catch (error) {
+                console.error("無法獲取訪客計數:", error);
+            }
+        }
+        fetchCounter();
+    </script>
 </body>
 </html>
