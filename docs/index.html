@@ -6,19 +6,31 @@
     <title>訪客計數器</title>
 </head>
 <body>
-    <h1>訪客計數：<span id="counter">讀取中...</span></h1>
+    <div>訪客人數：<span id="visitor-count">讀取中...</span></div>
 
     <script>
-        async function fetchCounter() {
-            try {
-                let response = await fetch('counter.json');
-                let data = await response.json();
-                document.getElementById('counter').innerText = data.visits;
-            } catch (error) {
-                console.error("無法獲取訪客計數:", error);
-            }
+    async function fetchVisitorCount() {
+        try {
+            let response = await fetch("https://raw.githubusercontent.com/你的GitHub帳號/你的倉庫名稱/main/counter.json");
+            let data = await response.json();
+            document.getElementById("visitor-count").innerText = data.count;
+            
+            // 觸發 GitHub Action 更新計數
+            await fetch("https://api.github.com/repos/你的GitHub帳號/你的倉庫名稱/dispatches", {
+                method: "POST",
+                headers: {
+                    "Accept": "application/vnd.github.everest-preview+json",
+                    "Authorization": "token YOUR_GITHUB_PERSONAL_ACCESS_TOKEN"
+                },
+                body: JSON.stringify({ event_type: "update-visitor-count" })
+            });
+        } catch (error) {
+            console.error("無法獲取訪客計數:", error);
         }
-        fetchCounter();
+    }
+    
+    fetchVisitorCount();
     </script>
+
 </body>
 </html>
