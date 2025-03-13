@@ -26,9 +26,12 @@ jobs:
           echo "{\"count\": $COUNT}" > $FILE
 
       - name: Commit and Push Changes
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/你的GitHub帳號/你的倉庫名稱.git
           git add counter.json
           git commit -m "Update visitor count" || echo "No changes to commit"
           git push
