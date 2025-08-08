@@ -4,11 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的 GitHub Pages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .counter {
+            font-weight: bold;
+            color: #0069d9;
+        }
+    </style>
 </head>
 <body>
-    <h1>歡迎來到我的網站！</h1>
-    <p>這是我的 GitHub Pages 網站</p>
-    <p>訪客計數：</p>
-    <img src="https://visitor-badge.laobi.icu/badge?page_id=test.羊.tw" alt="訪客計數器">
+    <header>
+        <h1>歡迎來到我的網站！</h1>
+    </header>
+    <main>
+        <p>這是我的 GitHub Pages 網站，分享程式教學、專案心得與技術筆記。</p>
+        <p>本站持續更新中，歡迎常來看看並提供建議。</p>
+        <p>訪客計數：<span id="visitor-count" class="counter">載入中...</span></p>
+    </main>
+    <script src="visitor_count.js"></script>
 </body>
 </html>
